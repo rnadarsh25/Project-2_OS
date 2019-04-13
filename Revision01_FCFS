@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+static int count=0;
+int main(){
+	int ar[] = {143,130,1750,1022,1509,948,1774,913,1470,86};
+	int Tmar[10],sum=5;
+	int Arrival[10];
+	cout<<"Following are the left process!\n\nDo enter the Following Data: \n\n";
+	for(int i=0;i<10;i++){
+		if(i==0){
+		   cout<<i+1<<":P["<<ar[i]<<"]:  Arrival Time: "<<i<<"\n\t   Burst Time: 5\n";	
+		   Tmar[i]=5;
+		   Arrival[i]=i;
+		}
+		else{
+		cout<<i+1<<":P["<<ar[i]<<"]:  Arrival Time: "<<i<<"\n";
+		cout<<"\t   Burst Time: ";cin>>Tmar[i];
+		Arrival[i]=i;
+		sum = sum+Tmar[i];
+       }
+	}
