@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+static int count=0;
+int main(){
+	int ar[] = {143,130,1750,1022,1509,948,1774,913,1470,86};
+	int Tmar[10],sum=5;
+	int Arrival[10],CT[10],TAT[10],WT[10];
+	cout<<"Following are the left process!\n\nDo enter the Following Data: \n\n";
+	for(int i=0;i<10;i++){
+		if(i==0){
+		   cout<<i+1<<":P["<<ar[i]<<"]:  Arrival Time: "<<i<<"\n\t   Burst Time: 5\n";	
+		   Tmar[i]=5;
+		   Arrival[i]=i;
+		}
+		else{
+		cout<<i+1<<":P["<<ar[i]<<"]:  Arrival Time: "<<i<<"\n";
+		cout<<"\t   Burst Time: ";cin>>Tmar[i];
+		Arrival[i]=i;
+		sum = sum+Tmar[i];
+       }
+	}
+	cout<<"Execution order:\n\n";
+	cout<<"\t\tPROCESS\t\tARRIVAL TIME\t\tBURST TIME\t\t\t\tGANTT CHART\n\n";
+	int j;
+	for(int i=0;i<10;i++){
+	    cout<<"\t\t"<<i+1<<":P["<<ar[i]<<"]\t"<<Arrival[i]<<"\t\t\t"<<Tmar[i];	
+		if(count==0){
+		cout<<"\t\t\t";
+		for(j=count;j<=Tmar[i];j++){
+			cout<<j<<"  ";
+		}
+		count=j;
+		CT[i]=count;
+		cout<<"\n";
+	}
+	else{
+		cout<<"\t\t\t";
+		for(j=count;j<count+Tmar[i];j++){
+			cout<<j<<"  ";
+		}
+		
+		count=j;
+		CT[i] = count;
+		cout<<"\n";
+	}
+  }
+    if((count-1)==sum){
+	    cout<<"\n\nTotal time Consumed: "<<sum;	
+	}
+	int hy;
+	cout<<"\n\nEnter any key to print table: ";cin>>hy;
+	system("cls");
+	for(int i=0;i<10;i++){
+		TAT[i] = CT[i]-Arrival[i];
+		WT[i] = TAT[i]-Tmar[i];
+	}
+	cout<<"\t\t\t\t\t\t\t\t: Table :\n\n";
+	cout<<"\t\t\tPROCESS\t    ARRIVAL TIME     BURST TIME\t   COMPLETION TIME   TURNAROUND TIME\tWAITING TIME\n\n";
+	for(int i=0;i<10;i++){
+		//cout<<"\t\t\t"<<P[i]<<i+1<<"\t\t"<<Arrival[i]<<"\t\t "<<T[i]<<"\t\t"<<CT[i]<<"\t\t  "<<TAT[i]<<"\t\t    "<<WT[i]<<"\n";
+	
+		cout<<"\t\t\t"<<i+1<<":P["<<ar[i]<<"]\t"<<Arrival[i]<<"\t\t "<<Tmar[i]<<"\t\t"<<CT[i]<<"\t\t  "<<TAT[i]<<"\t\t   "<<WT[i]<<"\n";
+	}
+}
